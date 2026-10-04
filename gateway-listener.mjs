@@ -1,4 +1,5 @@
-﻿import {
+import { createServer } from "node:http";
+import {
     Client,
     GatewayIntentBits
 } from "discord.js";
@@ -149,3 +150,19 @@ client.on(
 client.login(
     TOKEN
 );
+
+
+const PORT = Number(process.env.PORT || 10000);
+
+const server = createServer((req, res) => {
+    res.writeHead(200, {
+        "Content-Type": "text/plain; charset=UTF-8"
+    });
+
+    res.end("EVE Mentor Gateway online");
+});
+
+server.listen(PORT, "0.0.0.0", () => {
+    console.log(`HTTP server listening on port ${PORT}`);
+});
+
